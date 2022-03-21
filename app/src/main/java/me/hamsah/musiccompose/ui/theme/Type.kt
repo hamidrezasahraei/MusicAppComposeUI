@@ -14,6 +14,12 @@ val Typography = Typography(
         fontSize = 16.sp,
         color = Silver
     ),
+    body2 = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        color = Silver
+    ),
     h1 = TextStyle(
         color = Silver,
         fontFamily = FontFamily.SansSerif,
@@ -25,6 +31,12 @@ val Typography = Typography(
         fontFamily = FontFamily.SansSerif,
         fontWeight = FontWeight.Bold,
         fontSize = 18.sp
+    ),
+    subtitle1 = TextStyle(
+        color = LightPurple,
+        fontWeight = FontWeight.Bold,
+        fontSize = 12.sp,
+        letterSpacing = 0.15.sp
     )
     /* Other default text styles to override
     button = TextStyle(

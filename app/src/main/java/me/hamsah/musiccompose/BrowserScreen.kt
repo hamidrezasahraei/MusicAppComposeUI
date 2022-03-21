@@ -1,5 +1,6 @@
 package me.hamsah.musiccompose
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -32,6 +33,7 @@ fun BrowserScreen() {
         Column {
             HeaderSection()
             ChipsSection(listOf("All", "Videos", "MP3s", "Albums"))
+            TrendingSection()
         }
     }
 }
@@ -95,6 +97,66 @@ fun ChipsSection(chips: List<String>) {
                 Text(
                     text = item,
                     color = if (selectedRowIndex == index) DarkBackground else TextGrey
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun TrendingSection() {
+    Column() {
+        Row(
+            Modifier.padding(start = 8.dp, end = 8.dp, top = 16.dp, bottom = 16.dp)
+        ) {
+            Text(
+                text = "Trending",
+                style = Typography.h2,
+                modifier = Modifier.alignByBaseline()
+            )
+            Text(
+                text = "Music",
+                style = Typography.body2,
+                modifier = Modifier
+                    .alignByBaseline()
+                    .weight(1f)
+                    .padding(start = 4.dp)
+                )
+            Text(
+                text = "See All",
+                style = Typography.subtitle1,
+                modifier = Modifier
+                    .padding(4.dp)
+                    .alignByBaseline()
+            )
+        }
+        Row(horizontalArrangement = Arrangement.SpaceBetween) {
+            Image(
+                painter = painterResource(id = R.drawable.shadmehr),
+                contentDescription = "First trending music",
+                modifier = Modifier
+                    .weight(2f)
+                    .padding(4.dp)
+                    .clip(RoundedCornerShape(16.dp))
+            )
+            Column(
+                verticalArrangement = Arrangement.SpaceAround,
+                modifier = Modifier
+                    .weight(1f)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.zedbazi),
+                    contentDescription = "Second trending music",
+                    modifier = Modifier
+                        .padding(4.dp)
+                        .clip(RoundedCornerShape(16.dp))
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.donya),
+                    contentDescription = "Third trending music",
+                    modifier = Modifier
+                        .padding(4.dp)
+                        .clip(RoundedCornerShape(16.dp))
                 )
             }
         }
