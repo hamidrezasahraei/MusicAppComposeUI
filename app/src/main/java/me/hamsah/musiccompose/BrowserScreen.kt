@@ -105,31 +105,8 @@ fun ChipsSection(chips: List<String>) {
 
 @Composable
 fun TrendingSection() {
-    Column() {
-        Row(
-            Modifier.padding(start = 8.dp, end = 8.dp, top = 16.dp, bottom = 16.dp)
-        ) {
-            Text(
-                text = "Trending",
-                style = Typography.h2,
-                modifier = Modifier.alignByBaseline()
-            )
-            Text(
-                text = "Music",
-                style = Typography.body2,
-                modifier = Modifier
-                    .alignByBaseline()
-                    .weight(1f)
-                    .padding(start = 4.dp)
-                )
-            Text(
-                text = "See All",
-                style = Typography.subtitle1,
-                modifier = Modifier
-                    .padding(4.dp)
-                    .alignByBaseline()
-            )
-        }
+    Column {
+        SectionHeader(title = "Trending", subtitle = "Music", action = "See All")
         Row(horizontalArrangement = Arrangement.SpaceBetween) {
             Image(
                 painter = painterResource(id = R.drawable.shadmehr),
@@ -163,6 +140,35 @@ fun TrendingSection() {
     }
 }
 
+@Composable
+fun SectionHeader(title: String, subtitle: String, action: String?) {
+    Row(
+        Modifier.padding(start = 8.dp, end = 8.dp, top = 16.dp, bottom = 16.dp)
+    ) {
+        Text(
+            text = title,
+            style = Typography.h2,
+            modifier = Modifier.alignByBaseline()
+        )
+        Text(
+            text = subtitle,
+            style = Typography.body2,
+            modifier = Modifier
+                .alignByBaseline()
+                .weight(1f)
+                .padding(start = 4.dp)
+        )
+        if (!action.isNullOrEmpty()){
+            Text(
+                text = action,
+                style = Typography.subtitle1,
+                modifier = Modifier
+                    .padding(4.dp)
+                    .alignByBaseline()
+            )
+        }
+    }
+}
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
