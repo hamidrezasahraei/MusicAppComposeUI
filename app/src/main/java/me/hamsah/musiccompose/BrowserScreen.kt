@@ -12,11 +12,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.drawscope.Fill
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import me.hamsah.musiccompose.ui.Album
 import me.hamsah.musiccompose.ui.LiveRadio
 import me.hamsah.musiccompose.ui.standardQuadFromTo
 import me.hamsah.musiccompose.ui.theme.*
@@ -29,7 +31,10 @@ fun BrowserScreen() {
             .fillMaxSize()
             .padding(32.dp)
     ) {
-        Column {
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+        ) {
             HeaderSection()
             ChipsSection(listOf("All", "Videos", "MP3s", "Albums"))
             TrendingSection()
@@ -52,6 +57,30 @@ fun BrowserScreen() {
                         darkColor = BlueViolet3,
                         mediumColor = BlueViolet2,
                         lightColor = BlueViolet1
+                    )
+                )
+            )
+            AlbumSection(
+                albums = listOf(
+                    Album(
+                        title = "Eshghe Shirinam",
+                        singer = "Ahllam",
+                        image = R.drawable.ahllam
+                    ),
+                    Album(
+                        title = "Party Life",
+                        singer = "Deejay Al",
+                        image = R.drawable.party
+                    ),
+                    Album(
+                        title = "Zakhare Asli",
+                        singer = "Sohrab MJ",
+                        image = R.drawable.mj
+                    ),
+                    Album(
+                        title = "Paeezi",
+                        singer = "Satin",
+                        image = R.drawable.satin
                     )
                 )
             )
@@ -132,6 +161,7 @@ fun TrendingSection() {
             Image(
                 painter = painterResource(id = R.drawable.shadmehr),
                 contentDescription = "First trending music",
+                contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .weight(2f)
                     .padding(4.dp)
@@ -277,6 +307,64 @@ fun SectionHeader(title: String, subtitle: String, action: String? = null) {
         }
     }
 }
+
+@Composable
+fun AlbumSection(albums: List<Album>) {
+    Column {
+        SectionHeader(title = "Latest", subtitle = "Albums", action = "See All")
+        LazyRow {
+            items(albums.size) {
+                AlbumItem(album = albums[it])
+            }
+        }
+    }
+}
+
+@Composable
+fun AlbumItem(album: Album) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.padding(8.dp)
+    ) {
+        Box(modifier = Modifier.size(128.dp)) {
+            Image(
+                painter = painterResource(id = album.image),
+                contentDescription = "Album",
+                modifier = Modifier
+                    .clip(CircleShape)
+            )
+            Canvas(
+                modifier = Modifier
+                    .size(32.dp)
+                    .align(Alignment.Center)
+            ) {
+                drawCircle(
+                    color = DarkBackgroundOpacity,
+                    radius = 48f,
+                    style = Fill
+                )
+                drawCircle(
+                    color = DarkBackground,
+                    radius = 32f,
+                    style = Fill
+                )
+            }
+        }
+        Text(
+            text = album.title,
+            style = Typography.body1,
+            modifier = Modifier.padding(top = 4.dp)
+        )
+        Text(
+            text = album.singer,
+            style = Typography.subtitle2,
+            modifier = Modifier.padding(top = 4.dp)
+        )
+    }
+    
+
+}
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
