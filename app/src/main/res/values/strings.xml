@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MusicCompose</string>
+    <string name="browser_screen_route">Browser</string>
+    <string name="artists_screen_route">Artists</string>
+    <string name="home_screen_route">Home</string>
+    <string name="genres_bag_screen_route">Genres</string>
+    <string name="my_music_screen_route">MyMusic</string>
 </resources>
