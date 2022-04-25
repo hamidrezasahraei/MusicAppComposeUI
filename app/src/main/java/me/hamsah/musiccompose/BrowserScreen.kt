@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -57,66 +58,65 @@ import me.hamsah.musiccompose.ui.theme.Typography
 
 @Composable
 fun BrowserScreen() {
-    Box(
+    Column(
         modifier = Modifier
             .background(DarkBackground)
             .fillMaxSize()
-            .padding(32.dp)
+            .padding(vertical = 32.dp)
+            .verticalScroll(rememberScrollState())
     ) {
-        Column(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-        ) {
-            HeaderSection("Browser")
-            ChipsSection(listOf("All", "Videos", "MP3s", "Albums"))
-            TrendingSection()
-            LiveRadioSection(
-                liveRadios = listOf(
-                    LiveRadio(
-                        radioTitle = "Ava",
-                        darkColor = Beige3,
-                        mediumColor = Beige2,
-                        lightColor = Beige1
-                    ),
-                    LiveRadio(
-                        radioTitle = "Javan",
-                        darkColor = LightGreen3,
-                        mediumColor = LightGreen2,
-                        lightColor = LightGreen1
-                    ),
-                    LiveRadio(
-                        radioTitle = "Javan",
-                        darkColor = BlueViolet3,
-                        mediumColor = BlueViolet2,
-                        lightColor = BlueViolet1
-                    )
+        HeaderSection("My Music", Modifier.padding(horizontal = 32.dp))
+        ChipsSection(listOf("All", "Videos", "MP3s", "Albums"))
+        SectionHeader(title = "Trending", subtitle = "Music", action = "See All")
+        TrendingSection()
+        SectionHeader(title = "Live", subtitle = "Radio")
+        LiveRadioSection(
+            liveRadios = listOf(
+                LiveRadio(
+                    radioTitle = "Ava",
+                    darkColor = Beige3,
+                    mediumColor = Beige2,
+                    lightColor = Beige1
+                ),
+                LiveRadio(
+                    radioTitle = "Javan",
+                    darkColor = LightGreen3,
+                    mediumColor = LightGreen2,
+                    lightColor = LightGreen1
+                ),
+                LiveRadio(
+                    radioTitle = "Javan",
+                    darkColor = BlueViolet3,
+                    mediumColor = BlueViolet2,
+                    lightColor = BlueViolet1
                 )
             )
-            AlbumSection(
-                albums = listOf(
-                    Album(
-                        title = "Eshghe Shirinam",
-                        singer = "Ahllam",
-                        image = R.drawable.ahllam
-                    ),
-                    Album(
-                        title = "Party Life",
-                        singer = "Deejay Al",
-                        image = R.drawable.party
-                    ),
-                    Album(
-                        title = "Zakhare Asli",
-                        singer = "Sohrab MJ",
-                        image = R.drawable.mj
-                    ),
-                    Album(
-                        title = "Paeezi",
-                        singer = "Satin",
-                        image = R.drawable.satin
-                    )
+        )
+        SectionHeader(title = "Latest", subtitle = "Albums", action = "See All")
+        AlbumSection(
+            albums = listOf(
+                Album(
+                    title = "Eshghe Shirinam",
+                    singer = "Ahllam",
+                    image = R.drawable.ahllam
+                ),
+                Album(
+                    title = "Party Life",
+                    singer = "Deejay Al",
+                    image = R.drawable.party
+                ),
+                Album(
+                    title = "Zakhare Asli",
+                    singer = "Sohrab MJ",
+                    image = R.drawable.mj
+                ),
+                Album(
+                    title = "Paeezi",
+                    singer = "Satin",
+                    image = R.drawable.satin
                 )
             )
-        }
+        )
     }
 }
 
@@ -127,7 +127,9 @@ fun ChipsSection(chips: List<String>) {
     }
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier.padding(top = 16.dp)
+        modifier = Modifier
+            .padding(top = 16.dp)
+            .padding(horizontal = 32.dp)
     ) {
         chips.forEachIndexed { index, item ->
             Box(
@@ -153,50 +155,47 @@ fun ChipsSection(chips: List<String>) {
 
 @Composable
 fun TrendingSection() {
-    Column {
-        SectionHeader(title = "Trending", subtitle = "Music", action = "See All")
-        Row(horizontalArrangement = Arrangement.SpaceBetween) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier.padding(horizontal = 32.dp)
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.shadmehr),
+            contentDescription = "First trending music",
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+                .weight(2f)
+                .padding(4.dp)
+                .clip(RoundedCornerShape(16.dp))
+        )
+        Column(
+            verticalArrangement = Arrangement.SpaceAround,
+            modifier = Modifier
+                .weight(1f)
+        ) {
             Image(
-                painter = painterResource(id = R.drawable.shadmehr),
-                contentDescription = "First trending music",
-                contentScale = ContentScale.Fit,
+                painter = painterResource(id = R.drawable.zedbazi),
+                contentDescription = "Second trending music",
                 modifier = Modifier
-                    .weight(2f)
                     .padding(4.dp)
                     .clip(RoundedCornerShape(16.dp))
             )
-            Column(
-                verticalArrangement = Arrangement.SpaceAround,
+            Image(
+                painter = painterResource(id = R.drawable.donya),
+                contentDescription = "Third trending music",
                 modifier = Modifier
-                    .weight(1f)
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.zedbazi),
-                    contentDescription = "Second trending music",
-                    modifier = Modifier
-                        .padding(4.dp)
-                        .clip(RoundedCornerShape(16.dp))
-                )
-                Image(
-                    painter = painterResource(id = R.drawable.donya),
-                    contentDescription = "Third trending music",
-                    modifier = Modifier
-                        .padding(4.dp)
-                        .clip(RoundedCornerShape(16.dp))
-                )
-            }
+                    .padding(4.dp)
+                    .clip(RoundedCornerShape(16.dp))
+            )
         }
     }
 }
 
 @Composable
 fun LiveRadioSection(liveRadios: List<LiveRadio>) {
-    Column {
-        SectionHeader(title = "Live", subtitle = "Radio")
-        LazyRow {
-            items(liveRadios.size) {
-                LiveRadioItem(liveRadio = liveRadios[it])
-            }
+    LazyRow(contentPadding = PaddingValues(horizontal = 32.dp)) {
+        items(liveRadios.size) {
+            LiveRadioItem(liveRadio = liveRadios[it])
         }
     }
 }
@@ -279,7 +278,7 @@ fun LiveRadioItem(liveRadio: LiveRadio) {
 @Composable
 fun SectionHeader(title: String, subtitle: String, action: String? = null) {
     Row(
-        Modifier.padding(start = 8.dp, end = 8.dp, top = 16.dp, bottom = 16.dp)
+        Modifier.padding(vertical = 16.dp, horizontal = 32.dp)
     ) {
         Text(
             text = title,
@@ -308,12 +307,9 @@ fun SectionHeader(title: String, subtitle: String, action: String? = null) {
 
 @Composable
 fun AlbumSection(albums: List<Album>) {
-    Column {
-        SectionHeader(title = "Latest", subtitle = "Albums", action = "See All")
-        LazyRow {
-            items(albums.size) {
-                AlbumItem(album = albums[it])
-            }
+    LazyRow(contentPadding = PaddingValues(horizontal = 32.dp)) {
+        items(albums.size) {
+            AlbumItem(album = albums[it])
         }
     }
 }
