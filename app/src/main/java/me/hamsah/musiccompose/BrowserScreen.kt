@@ -65,7 +65,7 @@ fun BrowserScreen() {
             .padding(vertical = 32.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        HeaderSection("My Music", Modifier.padding(horizontal = 32.dp))
+        HeaderSection("Browser", Modifier.padding(horizontal = 32.dp))
         ChipsSection(listOf("All", "Videos", "MP3s", "Albums"))
         SectionHeader(title = "Trending", subtitle = "Music", action = "See All")
         TrendingSection()
