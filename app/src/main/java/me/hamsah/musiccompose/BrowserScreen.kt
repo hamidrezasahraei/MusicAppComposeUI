@@ -1,27 +1,59 @@
 package me.hamsah.musiccompose
 
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import me.hamsah.musiccompose.ui.Album
+import me.hamsah.musiccompose.ui.HeaderSection
 import me.hamsah.musiccompose.ui.LiveRadio
 import me.hamsah.musiccompose.ui.standardQuadFromTo
-import me.hamsah.musiccompose.ui.theme.*
+import me.hamsah.musiccompose.ui.theme.Beige1
+import me.hamsah.musiccompose.ui.theme.Beige2
+import me.hamsah.musiccompose.ui.theme.Beige3
+import me.hamsah.musiccompose.ui.theme.BlueViolet1
+import me.hamsah.musiccompose.ui.theme.BlueViolet2
+import me.hamsah.musiccompose.ui.theme.BlueViolet3
+import me.hamsah.musiccompose.ui.theme.DarkBackground
+import me.hamsah.musiccompose.ui.theme.DarkBackgroundOpacity
+import me.hamsah.musiccompose.ui.theme.LightGreen1
+import me.hamsah.musiccompose.ui.theme.LightGreen2
+import me.hamsah.musiccompose.ui.theme.LightGreen3
+import me.hamsah.musiccompose.ui.theme.Silver
+import me.hamsah.musiccompose.ui.theme.TextGrey
+import me.hamsah.musiccompose.ui.theme.Typography
 
 @Composable
 fun BrowserScreen() {
@@ -35,7 +67,7 @@ fun BrowserScreen() {
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
         ) {
-            HeaderSection()
+            HeaderSection("Browser")
             ChipsSection(listOf("All", "Videos", "MP3s", "Albums"))
             TrendingSection()
             LiveRadioSection(
@@ -85,40 +117,6 @@ fun BrowserScreen() {
                 )
             )
         }
-    }
-}
-
-@Composable
-fun HeaderSection() {
-    Row(
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(
-            text = "Browser",
-            style = Typography.h1,
-            modifier = Modifier.weight(1f)
-        )
-        Icon(
-            painter = painterResource(id = R.drawable.ic_qr_code_scanner),
-            contentDescription = "QR Code Scanner",
-            modifier = Modifier
-                .clip(CircleShape)
-                .padding(end = 8.dp)
-                .border(1.dp, Silver, CircleShape)
-                .padding(4.dp)
-                .size(24.dp),
-            tint = Silver
-        )
-        Icon(
-            painter = painterResource(id = R.drawable.ic_account_circle),
-            contentDescription = "Profile",
-            modifier = Modifier
-                .clip(CircleShape)
-                .border(1.dp, Silver, CircleShape)
-                .padding(4.dp)
-                .size(24.dp),
-            tint = Silver
-        )
     }
 }
 
@@ -296,7 +294,7 @@ fun SectionHeader(title: String, subtitle: String, action: String? = null) {
                 .weight(1f)
                 .padding(start = 4.dp)
         )
-        if (!action.isNullOrEmpty()){
+        if (!action.isNullOrEmpty()) {
             Text(
                 text = action,
                 style = Typography.subtitle1,
@@ -361,8 +359,6 @@ fun AlbumItem(album: Album) {
             modifier = Modifier.padding(top = 4.dp)
         )
     }
-    
-
 }
 
 @Preview(showBackground = true)
