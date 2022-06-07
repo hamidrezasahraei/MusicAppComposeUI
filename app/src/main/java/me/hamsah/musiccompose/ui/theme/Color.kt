@@ -19,3 +19,8 @@ val LightGreen3 = Color(0xff11d79b)
 val BlueViolet1 = Color(0xffaeb4fd)
 val BlueViolet2 = Color(0xff9fa5fe)
 val BlueViolet3 = Color(0xff8f98fd)
+
+
+val albumItemDarkColor =Color(0xFF262736)
+val albumItemMediumColor =Color(0xFF353745)
+val albumItemLightColor = Color(0xFF404254)
