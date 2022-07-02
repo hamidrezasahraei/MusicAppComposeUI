@@ -1,4 +1,4 @@
-package me.hamsah.musiccompose
+package me.hamsah.musiccompose.screens
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -37,6 +37,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import me.hamsah.musiccompose.R
 import me.hamsah.musiccompose.ui.Album
 import me.hamsah.musiccompose.ui.HeaderSection
 import me.hamsah.musiccompose.ui.LiveRadio
